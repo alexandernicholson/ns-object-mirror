@@ -1,7 +1,6 @@
 import time
 from kubernetes import client, config
 
-# Check if kubeconfig is available, otherwise use in-cluster config
 try:
     config.load_kube_config()
 except:
@@ -98,14 +97,10 @@ def mirror_secrets(secrets, namespaces):
                             print(f"Secret {secret.metadata.name} has been mirrored to namespace {namespace}.")
 
 def run_mirror():
-    # Get a list of namespaces
     namespaces = [namespace.metadata.name for namespace in v1.list_namespace().items]
-
-    # Get configmaps and secrets for all namespaces
     configmaps = v1.list_config_map_for_all_namespaces()
     secrets = v1.list_secret_for_all_namespaces()
 
-    # Mirror configmaps and secrets
     mirror_configmaps(configmaps, namespaces)
     mirror_secrets(secrets, namespaces)
 
