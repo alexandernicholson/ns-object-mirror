@@ -107,7 +107,7 @@ def run_mirror():
 
 if __name__ == "__main__":
     while True:
-        print("Running mirror at " + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()))
+        print("--- Running mirror at " + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()) + " ---")
         run_mirror()
-        print("Finished running mirror at " + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()) + ". Sleeping for 30 seconds.")
+        print("--- Finished running mirror at " + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()) + ". Sleeping for 30 seconds." + " ---")
         time.sleep(30)
