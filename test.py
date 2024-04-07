@@ -150,6 +150,9 @@ class TestUpdateMirror(unittest.TestCase):
         mirrored_secret = self.v1.read_namespaced_secret("test-secret", "mirror-namespace-2")
         self.assertEqual(mirrored_secret.data, {"key": "dmFsdWU="})
 
+        # Check that the ns-object-mirror/to annotation is not copied
+        self.assertNotIn("ns-object-mirror/to", (mirrored_configmap.metadata.annotations if mirrored_configmap.metadata.annotations is not None else {}))
+
     def tearDown(self):
         # Delete test objects
         self.v1.delete_namespaced_config_map("test-configmap", "test-namespace-2")
