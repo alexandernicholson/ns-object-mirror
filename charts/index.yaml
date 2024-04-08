@@ -2,8 +2,19 @@ apiVersion: v1
 entries:
   ns-object-mirror:
   - apiVersion: v2
+    appVersion: 0.4.3
+    created: "2024-04-08T17:34:08.787724+09:00"
+    description: A Helm chart for ns-object-mirror. Copy objects from one Kubernetes
+      namespace to another using annotations.
+    digest: f19d1e59f30af00cbcb36ffcd71713626f5f71195841b362f5a23a77ee4c23b6
+    name: ns-object-mirror
+    type: application
+    urls:
+    - https://alexandernicholson.github.io/ns-object-mirror/charts/ns-object-mirror-0.4.3.tgz
+    version: 0.4.3
+  - apiVersion: v2
     appVersion: 0.4.2
-    created: "2024-04-08T15:31:16.357452+09:00"
+    created: "2024-04-08T17:34:08.787359+09:00"
     description: A Helm chart for ns-object-mirror. Copy objects from one Kubernetes
       namespace to another using annotations.
     digest: 3bb313074aa093053eb1e4a747c31bef790482191232bfde4b3a74d2f0f946bc
@@ -14,7 +25,7 @@ entries:
     version: 0.4.2
   - apiVersion: v2
     appVersion: 0.4.1
-    created: "2024-04-08T15:31:16.357231+09:00"
+    created: "2024-04-08T17:34:08.786644+09:00"
     description: A Helm chart for ns-object-mirror. Copy objects from one Kubernetes
       namespace to another using annotations.
     digest: 03853e3f56a543c8c0c9aed383e25ba11277a711d698a2443c3da9f3c033f770
@@ -25,7 +36,7 @@ entries:
     version: 0.4.1
   - apiVersion: v2
     appVersion: 0.4.0
-    created: "2024-04-08T15:31:16.356844+09:00"
+    created: "2024-04-08T17:34:08.786313+09:00"
     description: A Helm chart for ns-object-mirror. Copy objects from one Kubernetes
       namespace to another using annotations.
     digest: f81d804bbe917137be13ead9608bdf1103d253172e9f14c6efdb8ea3f5d05424
@@ -34,4 +45,4 @@ entries:
     urls:
     - https://alexandernicholson.github.io/ns-object-mirror/charts/ns-object-mirror-0.4.0.tgz
     version: 0.4.0
-generated: "2024-04-08T15:31:16.356058+09:00"
+generated: "2024-04-08T17:34:08.784583+09:00"
