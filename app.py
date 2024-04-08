@@ -4,7 +4,12 @@ from kubernetes import client, config
 try:
     config.load_kube_config()
 except:
-    config.load_incluster_config()
+    print("Could not load kube config. Trying to load in-cluster config.")
+    try:
+        config.load_incluster_config()
+    except:
+        print("Could not load in-cluster config. Exiting.")
+        exit(1)
 
 v1 = client.CoreV1Api()
 
