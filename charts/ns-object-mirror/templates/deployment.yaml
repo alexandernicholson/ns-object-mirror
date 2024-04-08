@@ -11,18 +11,25 @@ spec:
       app: {{ .Values.deploymentName }}
   template:
     metadata:
-      labels: {{ .Values.labels }}
-      annotations: {{ .Values.annotations }}
+      labels:
+        {{ toYaml .Values.podLabels | nindent 8 }}
+      annotations: {{ toYaml .Values.annotations }}
     spec:
       serviceAccountName: {{ .Values.serviceAccount.name }}
-      securityContext: {{ .Values.securityContext }}
+      securityContext:
+        {{- toYaml .Values.securityContext | nindent 8 }}
       containers:
         - name: ns-object-mirror
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          resources: {{ .Values.resources }}
-          securityContext: {{ .Values.containerSecurityContext }}
-      nodeSelector: {{ .Values.nodeSelector }}
-      tolerations: {{ .Values.tolerations }}
-      affinity: {{ .Values.affinity }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          securityContext:
+            {{- toYaml .Values.containerSecurityContext | nindent 12 }}
+      nodeSelector:
+        {{- toYaml .Values.nodeSelector | nindent 8 }}
+      tolerations:
+        {{- toYaml .Values.tolerations | nindent 8 }}
+      affinity:
+        {{- toYaml .Values.affinity | nindent 8 }}
 ---
