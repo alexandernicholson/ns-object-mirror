@@ -45,17 +45,29 @@ def mirror_configmaps(configmaps, namespaces):
                             data=None
                         )
                         if old_configmap.data != new_configmap.data:
-                            v1.replace_namespaced_config_map(configmap.metadata.name, namespace, new_configmap)
-                            print(f"ConfigMap/Data for {configmap.metadata.name} in namespace {namespace} has been updated.")
+                            try:
+                                v1.replace_namespaced_config_map(configmap.metadata.name, namespace, new_configmap)
+                                print(f"ConfigMap/Data for {configmap.metadata.name} in namespace {namespace} has been updated.")
+                            except Exception as e:
+                                print(f"Error occurred while updating ConfigMap/Data for {configmap.metadata.name} in namespace {namespace}. Error: {e}")
+                                continue
                         elif old_configmap_without_ns_object_mirror_annotations.metadata.annotations != new_configmap.metadata.annotations:
-                            v1.patch_namespaced_config_map(configmap.metadata.name, namespace, new_configmap)
-                            print(f"ConfigMap/Annotations for {configmap.metadata.name} in namespace {namespace} have been updated.")
+                            try:
+                                v1.patch_namespaced_config_map(configmap.metadata.name, namespace, new_configmap)
+                                print(f"ConfigMap/Annotations for {configmap.metadata.name} in namespace {namespace} have been updated.")
+                            except Exception as e:
+                                print(f"Error occurred while updating ConfigMap/Annotations for {configmap.metadata.name} in namespace {namespace}. Error: {e}")
+                                continue
                         else:
                             print(f"ConfigMap {configmap.metadata.name} in namespace {namespace} is already up-to-date. Skipping.")
                     except client.rest.ApiException as e:
                         if e.status == 404:
-                            v1.create_namespaced_config_map(namespace, new_configmap)
-                            print(f"ConfigMap {configmap.metadata.name} has been mirrored to namespace {namespace}.")
+                            try:
+                                v1.create_namespaced_config_map(namespace, new_configmap)
+                                print(f"ConfigMap {configmap.metadata.name} has been mirrored to namespace {namespace}.")
+                            except Exception as e:
+                                print(f"Error occurred while mirroring ConfigMap {configmap.metadata.name} to namespace {namespace}. Error: {e}")
+                                continue
 
 def mirror_secrets(secrets, namespaces):
     for secret in secrets.items:
@@ -89,17 +101,29 @@ def mirror_secrets(secrets, namespaces):
                             data=None
                         )
                         if old_secret.data != new_secret.data:
-                            v1.replace_namespaced_secret(secret.metadata.name, namespace, new_secret)
-                            print(f"Secret/Data for {secret.metadata.name} in namespace {namespace} has been updated.")
+                            try:
+                                v1.replace_namespaced_secret(secret.metadata.name, namespace, new_secret)
+                                print(f"Secret/Data for {secret.metadata.name} in namespace {namespace} has been updated.")
+                            except Exception as e:
+                                print(f"Error occurred while updating Secret/Data for {secret.metadata.name} in namespace {namespace}. Error: {e}")
+                                continue
                         elif old_secret_without_ns_object_mirror_annotations.metadata.annotations != new_secret.metadata.annotations:
-                            v1.patch_namespaced_secret(secret.metadata.name, namespace, new_secret)
-                            print(f"Secret/Annotations for {secret.metadata.name} in namespace {namespace} have been updated.")
+                            try:
+                                v1.patch_namespaced_secret(secret.metadata.name, namespace, new_secret)
+                                print(f"Secret/Annotations for {secret.metadata.name} in namespace {namespace} have been updated.")
+                            except Exception as e:
+                                print(f"Error occurred while updating Secret/Annotations for {secret.metadata.name} in namespace {namespace}. Error: {e}")
+                                continue
                         else:
                             print(f"Secret {secret.metadata.name} in namespace {namespace} is already up-to-date. Skipping.")
                     except client.rest.ApiException as e:
                         if e.status == 404:
-                            v1.create_namespaced_secret(namespace, new_secret)
-                            print(f"Secret {secret.metadata.name} has been mirrored to namespace {namespace}.")
+                            try:
+                                v1.create_namespaced_secret(namespace, new_secret)
+                                print(f"Secret {secret.metadata.name} has been mirrored to namespace {namespace}.")
+                            except Exception as e:
+                                print(f"Error occurred while mirroring Secret {secret.metadata.name} to namespace {namespace}. Error: {e}")
+                                continue
 
 def run_mirror():
     namespaces = [namespace.metadata.name for namespace in v1.list_namespace().items]
