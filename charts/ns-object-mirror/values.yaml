@@ -1,0 +1,45 @@
+# Default values for ns-object-mirror.
+
+replicaCount: 1
+
+image:
+  repository: ghcr.io/alexandernicholson/ns-object-mirror
+  pullPolicy: IfNotPresent
+  tag: main
+
+deploymentName: "ns-object-mirror"
+namespace: "default"
+
+serviceAccount:
+  name: "ns-object-mirror"
+  create: true
+  extraAnnotations: {}
+
+podAnnotations: {}
+podLabels:
+  app: ns-object-mirror
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

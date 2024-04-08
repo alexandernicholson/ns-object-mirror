@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deploymentName }}
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.deploymentName }}
+  template:
+    metadata:
+      labels: {{ .Values.labels }}
+      annotations: {{ .Values.annotations }}
+    spec:
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      securityContext: {{ .Values.securityContext }}
+      containers:
+        - name: ns-object-mirror
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          resources: {{ .Values.resources }}
+          securityContext: {{ .Values.containerSecurityContext }}
+      nodeSelector: {{ .Values.nodeSelector }}
+      tolerations: {{ .Values.tolerations }}
+      affinity: {{ .Values.affinity }}
+---

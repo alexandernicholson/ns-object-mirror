@@ -1,0 +1,15 @@
+apiVersion: v1
+entries:
+  ns-object-mirror:
+  - apiVersion: v2
+    appVersion: 0.4.0
+    created: "2024-04-08T13:41:31.359937+09:00"
+    description: A Helm chart for ns-object-mirror. Copy objects from one Kubernetes
+      namespace to another using annotations.
+    digest: f81d804bbe917137be13ead9608bdf1103d253172e9f14c6efdb8ea3f5d05424
+    name: ns-object-mirror
+    type: application
+    urls:
+    - https://alexandernicholson.github.io/ns-object-mirror/charts/ns-object-mirror-0.4.0.tgz
+    version: 0.4.0
+generated: "2024-04-08T13:41:31.358539+09:00"
