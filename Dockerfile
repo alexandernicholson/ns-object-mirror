@@ -4,6 +4,8 @@ FROM python:3.10
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
+ENV PYTHONUNBUFFERED=1
+
 # Upgrade pip
 RUN pip install --upgrade pip
 
